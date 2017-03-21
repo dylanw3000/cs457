@@ -1,0 +1,25 @@
+##RenderMan RIB
+version 3.03
+Declare "Diam" "uniform float"
+
+Display "ovals.tiff" "file" "rgb"
+Format 512 512 -1
+ShadingRate 1
+
+LightSource "ambientlight" 1 "intensity" [0.25]
+LightSource "distantlight" 2 "intensity" [0.95] "from" [5 8 -10] "to" [0 0 0]
+
+Projection "perspective" "fov" [70]
+WorldBegin
+	Attribute "bound" "displacement" [1.0]
+
+	Translate 0 0 6
+	Displacement "ovalnoised" "Ad" 2.0 "Bd" 1.0
+	Surface "ovals" "Ad" 2.0 "Bd" 1.0
+	Color [1 1 1]
+	Opacity [1 1 1]
+	TransformBegin
+		Rotate 90 1. 0. 0.
+		Sphere 3 -3 3 360
+	TransformEnd
+WorldEnd
